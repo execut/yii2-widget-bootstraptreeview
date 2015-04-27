@@ -1,0 +1,23 @@
+{
+  "name": "execut/yii2-widget-bootstraptreeview",
+  "version": "0.0.1",
+  "description": "Bootstrap Tree View widget for yii2",
+  "keywords": ["yii2", "extension", "tree", "input", "form", "bootstrap", "jquery", "plugin"],
+  "homepage": "https://github.com/execut/yii2-tree",
+  "type": "yii2-extension",
+  "license": "BSD 3-Clause",
+  "authors": [
+    {
+      "name": "eXeCUT",
+    }
+  ],
+  "require": {
+    "yiisoft/yii2": "*",
+    "bower-asset/bootstrap-treeview": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "execut\\widget\\": ""
+    }
+  }
+}

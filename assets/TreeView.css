@@ -1,0 +1,15 @@
+.treeview span.icon.none {
+    margin-left: 0px;
+}
+
+.treeview.small .list-group-item {
+    padding: 2px 15px;
+}
+
+.treeview.middle .list-group-item {
+    padding: 4px 20px;
+}
+
+.treeview.small .list-group-item:first-child, .treeview.small .list-group-item:last-child, .treeview.middle .list-group-item:first-child, .treeview.middle .list-group-item:last-child {
+     border-radius: 0;
+}
