@@ -7,7 +7,7 @@
 }
 
 .treeview.middle .list-group-item {
-    padding: 4px 20px;
+    padding: 5px 11px;
 }
 
 .treeview.small .list-group-item:first-child, .treeview.small .list-group-item:last-child, .treeview.middle .list-group-item:first-child, .treeview.middle .list-group-item:last-child {
