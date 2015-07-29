@@ -55,11 +55,7 @@ $items = [
 
 $onSelect = new \yii\web\JsExpression(<<<JS
 function (undefined, item) {
-    $.pjax({
-        container: '#pjax-container',
-        url: item.href,
-        timeout: null
-    });
+    console.log(item);
 }
 JS
 );
