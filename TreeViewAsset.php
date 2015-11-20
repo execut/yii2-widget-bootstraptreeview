@@ -12,7 +12,7 @@ use yii\web\AssetBundle;
 class TreeViewAsset extends AssetBundle {
     public $sourcePath = '@vendor/execut/yii2-widget-bootstraptreeview/assets';
     public $css = [
-        'TreeView.css',
+        'TreeView.less',
     ];
 
     public $depends = [
