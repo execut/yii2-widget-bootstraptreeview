@@ -1,5 +1,6 @@
 <?php
 namespace execut\widget;
+use yii\base\Exception;
 use yii\helpers\Html;
 
 /**
@@ -31,6 +32,25 @@ class TreeView extends \yii\jui\Widget {
      */
     public $data = [];
 
+    public $containerOptions = [];
+
+    public $header = 'Select from tree';
+
+    /**
+     * Template for render widget
+     *
+     * @var string
+     */
+    public $template = '<div class="row">
+    <div class="col-sm-6">
+        <div class="tree-heading-container">{header}</div>
+    </div>
+    <div class="col-sm-6">
+        {search}
+    </div>
+</div>
+{tree}';
+
     /**
      * Run widget
      */
@@ -41,11 +61,34 @@ class TreeView extends \yii\jui\Widget {
             $this->options['class'] = $this->size;
         }
 
-        echo Html::tag('div', '', $this->options);
+        $parts = [
+            '{tree}' =>  Html::tag('div', '', $this->options)
+        ];
+        $template = $this->template;
+        if (strpos($this->template, '{tree}') === false) {
+            throw new Exception('{tree} not found in widget template');
+        }
+
+        $parts = [
+            '{tree}' => Html::tag('div', '', $this->options),
+            '{header}' => $this->header,
+        ];
+
+        if (strpos($this->template, '{search}') !== false) {
+            $parts['{search}'] = $this->renderSearchWidget();
+        }
+
+        echo Html::tag('div', strtr($this->template, $parts), $this->containerOptions);
 
         $this->_initDefaultIcon($this->data);
         $this->clientOptions['data'] = $this->data;
         $this->registerWidget('treeview');
+    }
+
+    protected function renderSearchWidget() {
+        return TreeFilterInput::widget([
+            'treeViewId' => $this->id,
+        ]);
     }
 
     /**

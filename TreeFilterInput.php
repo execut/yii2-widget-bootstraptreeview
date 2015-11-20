@@ -8,7 +8,16 @@
 namespace execut\widget;
 
 
-class TreeFilterInput
-{
+use yii\bootstrap\Html;
 
+class TreeFilterInput extends \yii\jui\Widget
+{
+    public $treeViewId;
+    public function run() {
+        echo Html::tag('div', Html::input('text', 'search', null, [
+            'class' => 'form-control',
+        ]), [
+            'class' => 'form-group'
+        ]);
+    }
 }
