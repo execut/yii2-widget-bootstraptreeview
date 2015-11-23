@@ -13,3 +13,13 @@
 .treeview.middle .list-group-item:last-child {
   border-radius: 0;
 }
+.tree-view-wrapper .tree-heading-container {
+  margin: 4px 6px;
+  font-weight: 700;
+  font-size: 1.1em;
+  line-height: 1.42857;
+  color: #555;
+}
+.tree-view-wrapper .tree-header {
+  padding-bottom: 6px;
+}

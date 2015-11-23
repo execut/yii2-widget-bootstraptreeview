@@ -2,7 +2,7 @@
 use execut\widget\TreeView;
 use yii\web\JsExpression;
 
-$items = [
+$data = [
     [
         'text' => 'Parent 1',
         'nodes' => [
@@ -36,9 +36,18 @@ JS
 $groupsContent = TreeView::widget([
     'data' => $data,
     'size' => TreeView::SIZE_SMALL,
+    'header' => 'Categories',
+    'searchOptions' => [
+        'inputOptions' => [
+            'placeholder' => 'Search category...'
+        ],
+    ],
     'clientOptions' => [
         'onNodeSelected' => $onSelect,
         'selectedBackColor' => 'rgb(40, 153, 57)',
         'borderColor' => '#fff',
     ],
 ]);
+
+
+echo $groupsContent;

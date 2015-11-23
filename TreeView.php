@@ -1,5 +1,6 @@
 <?php
 namespace execut\widget;
+use execut\yii\jui\Widget;
 use yii\base\Exception;
 use yii\helpers\Html;
 
@@ -12,10 +13,26 @@ use yii\helpers\Html;
  *
  * @author eXeCUT
  */
-class TreeView extends \yii\jui\Widget {
+class TreeView extends Widget {
     const SIZE_SMALL = 'small';
     const SIZE_MIDDLE = 'middle';
     const SIZE_NORMAL = 'normal';
+    const TEMPLATE_ADVANCED = '<div class="tree-view-wrapper">
+    <div class="row tree-header">
+        <div class="col-sm-6">
+            <div class="tree-heading-container">{header}</div>
+        </div>
+        <div class="col-sm-6">
+            {search}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            {tree}
+        </div>
+    </div>
+</div>';
+    const TEMPLATE_SIMPLE = '{tree}';
 
     /**
      * @var string Widget size
@@ -32,8 +49,25 @@ class TreeView extends \yii\jui\Widget {
      */
     public $data = [];
 
+    /**
+     * Main container html options
+     *
+     * @var array
+     */
     public $containerOptions = [];
 
+    /**
+     * Searvh widget options
+     *
+     * @var string
+     */
+    public $searchOptions = [];
+
+    /**
+     * Widget header
+     *
+     * @var string
+     */
     public $header = 'Select from tree';
 
     /**
@@ -41,22 +75,12 @@ class TreeView extends \yii\jui\Widget {
      *
      * @var string
      */
-    public $template = '<div class="row">
-    <div class="col-sm-6">
-        <div class="tree-heading-container">{header}</div>
-    </div>
-    <div class="col-sm-6">
-        {search}
-    </div>
-</div>
-{tree}';
+    public $template = self::TEMPLATE_ADVANCED;
 
     /**
      * Run widget
      */
     public function run() {
-        $bundle = new TreeViewAsset();
-        $bundle->register($this->view);
         if ($this->size !== self::SIZE_NORMAL) {
             $this->options['class'] = $this->size;
         }
@@ -82,13 +106,22 @@ class TreeView extends \yii\jui\Widget {
 
         $this->_initDefaultIcon($this->data);
         $this->clientOptions['data'] = $this->data;
+
         $this->registerWidget('treeview');
     }
 
     protected function renderSearchWidget() {
-        return TreeFilterInput::widget([
-            'treeViewId' => $this->id,
-        ]);
+        $options = $this->searchOptions;
+        $options['treeViewId'] = $this->id;
+        if (empty($options['inputOptions'])) {
+            $options['inputOptions'] = [];
+        }
+
+        if (empty($options['inputOptions']['placeholder'])) {
+            $options['inputOptions']['placeholder'] = 'Search...';
+        }
+
+        return TreeFilterInput::widget($options);
     }
 
     /**

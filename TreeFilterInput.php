@@ -8,16 +8,21 @@
 namespace execut\widget;
 
 
+use execut\yii\jui\Widget;
 use yii\bootstrap\Html;
 
-class TreeFilterInput extends \yii\jui\Widget
+class TreeFilterInput extends Widget
 {
     public $treeViewId;
+    public $inputOptions = [];
     public function run() {
-        echo Html::tag('div', Html::input('text', 'search', null, [
-            'class' => 'form-control',
-        ]), [
-            'class' => 'form-group'
-        ]);
+        $this->clientOptions['treeViewId'] = $this->treeViewId;
+        $this->registerWidget();
+        \yii\helpers\Html::addCssClass($this->options, 'execut-tree-filter-input');
+        $inputOptions = $this->inputOptions;
+        Html::addCssClass($inputOptions, 'form-control');
+        $inputOptions['autocomplete'] = 'off';
+
+        echo $this->_renderContainer(Html::input('text', 'search', null, $inputOptions) . '<span class="close" title="Clear search results">×</span>');
     }
 }

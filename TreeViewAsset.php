@@ -1,8 +1,6 @@
 <?php
 namespace execut\widget;
-
-
-use yii\web\AssetBundle;
+use execut\yii\web\AssetBundle;
 
 /**
  * Custom styles
@@ -10,11 +8,6 @@ use yii\web\AssetBundle;
  * @author eXeCUT
  */
 class TreeViewAsset extends AssetBundle {
-    public $sourcePath = '@vendor/execut/yii2-widget-bootstraptreeview/assets';
-    public $css = [
-        'TreeView.less',
-    ];
-
     public $depends = [
         'execut\widget\TreeViewBowerAsset',
     ];

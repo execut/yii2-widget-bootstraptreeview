@@ -1,0 +1,8 @@
+.execut-tree-filter-input {
+  position: relative;
+}
+.execut-tree-filter-input .close {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+}
