@@ -29,7 +29,7 @@ to the ```require``` section of your `composer.json` file.
 use execut\widget\TreeView;
 use yii\web\JsExpression;
 
-$items = [
+$data = [
     [
         'text' => 'Parent 1',
         'nodes' => [
@@ -37,10 +37,10 @@ $items = [
                 'text' => 'Child 1',
                 'nodes' => [
                     [
-                       'text' => 'Grandchild 1'
+                        'text' => 'Grandchild 1'
                     ],
                     [
-                       'text' => 'Grandchild 2'
+                        'text' => 'Grandchild 2'
                     ]
                 ]
             ],
@@ -63,12 +63,21 @@ JS
 $groupsContent = TreeView::widget([
     'data' => $data,
     'size' => TreeView::SIZE_SMALL,
+    'header' => 'Categories',
+    'searchOptions' => [
+        'inputOptions' => [
+            'placeholder' => 'Search category...'
+        ],
+    ],
     'clientOptions' => [
         'onNodeSelected' => $onSelect,
         'selectedBackColor' => 'rgb(40, 153, 57)',
         'borderColor' => '#fff',
     ],
 ]);
+
+
+echo $groupsContent;
 ```
 
 ## Pjax navigation example
@@ -76,6 +85,7 @@ $groupsContent = TreeView::widget([
 use yii\widgets\Pjax;
 use yii\web\JsExpression;
 use execut\widget\TreeView;
+use yii\helpers\Url;
 Pjax::begin([
     'id' => 'pjax-container',
 ]);
