@@ -10,5 +10,6 @@ use execut\yii\web\AssetBundle;
 class TreeViewAsset extends AssetBundle {
     public $depends = [
         'execut\widget\TreeViewBowerAsset',
+        'yii\jui\JuiAsset',
     ];
 }

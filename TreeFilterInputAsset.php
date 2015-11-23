@@ -9,4 +9,7 @@ namespace execut\widget;
 use execut\yii\web\AssetBundle;
 class TreeFilterInputAsset extends AssetBundle
 {
+    public $depends = [
+        'yii\jui\JuiAsset',
+    ];
 }
