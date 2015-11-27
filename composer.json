@@ -11,10 +11,11 @@
       "name": "eXeCUT"
     }
   ],
+  "minimum-stability": "stable",
   "require": {
-    "execut/yii2-base": "dev-master",
-    "yiisoft/yii2-jui": "dev-master",
-    "bower-asset/bootstrap-treeview": "dev-master"
+    "execut/yii2-base": "@dev",
+    "yiisoft/yii2-jui": "@dev",
+    "bower-asset/bootstrap-treeview": "@dev"
   },
   "autoload": {
     "psr-4": {
