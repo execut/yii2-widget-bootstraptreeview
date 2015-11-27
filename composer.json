@@ -13,7 +13,7 @@
   ],
   "minimum-stability": "stable",
   "require": {
-    "execut/yii2-base": "@dev",
+    "execut/yii2-base": "*",
     "yiisoft/yii2-jui": "@dev",
     "bower-asset/bootstrap-treeview": "@dev"
   },
