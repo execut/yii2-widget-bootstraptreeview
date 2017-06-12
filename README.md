@@ -1,6 +1,6 @@
 # Bootstrap Tree View widget wrapper for yii2
 
-[Widget page](https://github.com/jonmiles/bootstrap-treeview)
+[Widget page](https://github.com/patternfly/patternfly-bootstrap-treeview)
 
 ![Bootstrap Tree View Default](https://raw.github.com/jonmiles/bootstrap-treeview/master/screenshot/default.PNG)
 
