@@ -1,6 +1,6 @@
 {
   "name": "execut/yii2-widget-bootstraptreeview",
-  "version": "1.1.2",
+  "version": "1.1.4",
   "description": "Bootstrap Tree View widget wrapper for yii2",
   "keywords": ["yii2", "extension", "tree", "input", "form", "bootstrap", "jquery", "plugin"],
   "homepage": "https://github.com/execut/yii2-widget-bootstraptreeview",

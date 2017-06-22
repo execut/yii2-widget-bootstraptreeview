@@ -10,7 +10,7 @@ use yii\web\AssetBundle;
  * @author eXeCUT
  */
 class TreeViewBowerAsset extends AssetBundle {
-    public $sourcePath = '@bower/bootstrap-treeview/dist';
+    public $sourcePath = '@bower/patternfly-bootstrap-treeview/dist';
     public $js = [
         'bootstrap-treeview.min.js',
     ];
