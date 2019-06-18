@@ -15,6 +15,7 @@ class TreeFilterInput extends Widget
 {
     public $treeViewId;
     public $inputOptions = [];
+    public $clearButtonTitle = 'Clear search results';
     public function run() {
         $this->clientOptions['treeViewId'] = $this->treeViewId;
         $this->registerWidget();
@@ -23,6 +24,6 @@ class TreeFilterInput extends Widget
         Html::addCssClass($inputOptions, 'form-control');
         $inputOptions['autocomplete'] = 'off';
 
-        echo $this->_renderContainer(Html::input('text', 'search', null, $inputOptions) . '<span class="close" title="Clear search results">×</span>');
+        echo $this->_renderContainer(Html::input('text', 'search', null, $inputOptions) . '<span class="close" title="'.$this->clearButtonTitle.'">×</span>');
     }
 }
