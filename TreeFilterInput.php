@@ -10,12 +10,13 @@ namespace execut\widget;
 
 use execut\yii\jui\Widget;
 use yii\bootstrap\Html;
+use yii\helpers\ArrayHelper;
 
 class TreeFilterInput extends Widget
 {
     public $treeViewId;
     public $inputOptions = [];
-    public $clearButtonTitle = 'Clear search results';
+    public $clearButtonOptions = [];
     public function run() {
         $this->clientOptions['treeViewId'] = $this->treeViewId;
         $this->registerWidget();
@@ -23,7 +24,11 @@ class TreeFilterInput extends Widget
         $inputOptions = $this->inputOptions;
         Html::addCssClass($inputOptions, 'form-control');
         $inputOptions['autocomplete'] = 'off';
+        $clearButtonOptions = ArrayHelper::merge([
+            'class' => 'close',
+            'title' => 'Clear search results',
+        ], $this->clearButtonOptions);
 
-        echo $this->_renderContainer(Html::input('text', 'search', null, $inputOptions) . '<span class="close" title="'.$this->clearButtonTitle.'">×</span>');
+        echo $this->_renderContainer(Html::input('text', 'search', null, $inputOptions) . Html::tag('span', '×', $clearButtonOptions));
     }
 }
