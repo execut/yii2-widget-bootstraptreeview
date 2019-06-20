@@ -14,8 +14,22 @@ use yii\helpers\ArrayHelper;
 
 class TreeFilterInput extends Widget
 {
+
+    /**
+     * @var string target TreeView widget id
+     */
     public $treeViewId;
+
+
+    /**
+     * @var array Html options for search input tag
+     */
     public $inputOptions = [];
+
+
+    /**
+     * @var array Html options for clear search button tag
+     */
     public $clearButtonOptions = [];
     public function run() {
         $this->clientOptions['treeViewId'] = $this->treeViewId;

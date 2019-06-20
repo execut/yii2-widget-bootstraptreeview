@@ -68,6 +68,9 @@ $groupsContent = TreeView::widget([
         'inputOptions' => [
             'placeholder' => 'Search category...'
         ],
+        'clearButtonOptions' => [
+            'title' => 'Clear',
+        ],
     ],
     'clientOptions' => [
         'onNodeSelected' => $onSelect,
@@ -145,6 +148,25 @@ echo TreeView::widget([
     ],
 ]);
 ```
+
+## Changing widget template
+You can redefine widget template via template option:
+```php
+echo TreeView::widget([
+    ...
+    'template => TreeView::TEMPLATE_SIMPLE,
+    //'template => TreeView::TEMPLATE_ADVANCED //by default
+    ...
+]);
+```
+Supported template parts:
+
+Key|Description
+---|---
+{header} | 'header' configuration widget param
+{search} | Search input
+{tree} | Bootstrap TreeView widget content
+
 ## License
 
 **yii2-widget-bootstraptreeview** is released under the Apache License Version 2.0. See the bundled `LICENSE.md` for details.

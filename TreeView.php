@@ -8,7 +8,6 @@ use yii\helpers\Html;
  * Bootstrap Tree View wrapper for yii2
  *
  * @property string $size Widget size mode TreeView::SIZE_SMALL | TreeView::SIZE_MIDDLE | TreeView::SIZE_NORMAL
- * @property string $defaultIcon Default icon for each data item
  * @property array $data Tree data
  *
  * @author eXeCUT
@@ -38,11 +37,6 @@ class TreeView extends Widget {
      * @var string Widget size
      */
     public $size = TreeView::SIZE_NORMAL;
-
-    /**
-     * @var string Icon class from bootstrap
-     */
-    public $defaultIcon = 'none';
 
     /**
      * @var array Items list for widget
@@ -85,10 +79,10 @@ class TreeView extends Widget {
             $this->options['class'] = $this->size;
         }
 
-        $parts = [
-            '{tree}' =>  Html::tag('div', '', $this->options)
-        ];
-        $template = $this->template;
+        if (!empty($this->options['id']) && $this->options['id'] !== $this->id) {
+            throw new Exception('Set id directly to the widget via id config key instead redefine widget config options key');
+        }
+
         if (strpos($this->template, '{tree}') === false) {
             throw new Exception('{tree} not found in widget template');
         }
@@ -104,7 +98,6 @@ class TreeView extends Widget {
 
         echo Html::tag('div', strtr($this->template, $parts), $this->containerOptions);
 
-        $this->_initDefaultIcon($this->data);
         $this->clientOptions['data'] = $this->data;
 
         $this->registerWidget('treeview');
@@ -122,21 +115,5 @@ class TreeView extends Widget {
         }
 
         return TreeFilterInput::widget($options);
-    }
-
-    /**
-     * @param &array $data
-     */
-    protected function _initDefaultIcon(&$data)
-    {
-        foreach ($data as &$row) {
-            if (empty($row['icon'])) {
-                $row['icon'] = $this->defaultIcon;
-            }
-
-            if (isset($row['nodes'])) {
-                $this->_initDefaultIcon($row['nodes']);
-            }
-        }
     }
 }
