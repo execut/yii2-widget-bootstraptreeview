@@ -76,7 +76,7 @@ class TreeView extends Widget {
      */
     public function run() {
         if ($this->size !== self::SIZE_NORMAL) {
-            $this->options['class'] = $this->size;
+            Html::addCssClass($this->options, $this->size);
         }
 
         if (!empty($this->options['id']) && $this->options['id'] !== $this->id) {
