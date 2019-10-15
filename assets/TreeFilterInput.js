@@ -65,10 +65,18 @@ $.widget("execut.TreeFilterInput", {
             treeWidget = t.treeWidget;
         if (parentNode.length) {
             parentNode = parentNode[0];
+            if (typeof parentNode.$el === 'undefined') {
+                t.debugBug(parentNode);
+            }
+
             parentNode.$el.css('display', '');
             var parents = [];
             while ((parentNode = treeWidget.treeview('getParents', parentNode)) && parentNode.length) {
                 parentNode.map(function (node) {
+                    if (typeof node.$el === 'undefined') {
+                        t.debugBug(node);
+                    }
+
                     $(node.$el).css('display', '');
                 });
                 parents[parents.length] = parentNode;
@@ -78,5 +86,13 @@ $.widget("execut.TreeFilterInput", {
                 treeWidget.treeview('expandNode', parentNode);
             });
         }
+    },
+    debugBug: function (node) {
+        var nodeParams = '';
+        for (var key in node) {
+            nodeParams += key + ':' + node[key];
+        }
+
+        throw new Error("Undefined node el inside treefilterinput: " + nodeParams);
     }
 });
