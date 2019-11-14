@@ -8,6 +8,29 @@ $.widget("execut.TreeFilterInput", {
         t.clearEl = t.element.find('.close');
         t._initEvents();
     },
+    _escapeRegExp: function (str) {
+        var specials = [
+                // order matters for these
+                "-"
+                , "["
+                , "]"
+                // order doesn't matter for any of these
+                , "/"
+                , "{"
+                , "}"
+                , "("
+                , ")"
+                , "*"
+                , "+"
+                , "?"
+                , "."
+                , "\\"
+                , "^"
+                , "$"
+                , "|"
+            ], regex = RegExp('[' + specials.join('\\') + ']', 'g');
+        return str.replace(regex, "\\$&");
+    },
     _initEvents: function () {
         var t = this,
             prevTimeout = false,
@@ -29,7 +52,7 @@ $.widget("execut.TreeFilterInput", {
                 treeWidget.find('.list-group-item').css('display', '');
                 if (t.inputEl.val().length) {
                     treeWidget.treeview('collapseAll');
-                    var findedNodes = treeWidget.treeview('search', [t.inputEl.val(), {
+                    var findedNodes = treeWidget.treeview('search', [t._escapeRegExp(t.inputEl.val()), {
                         ignoreCase: true,     // case insensitive
                         exactMatch: false,    // like or equals
                         revealResults: true,  // reveal matching nodes
@@ -47,6 +70,7 @@ $.widget("execut.TreeFilterInput", {
                         isKillKeyPress = false;
                     }
                 } else {
+                    isKillKeyPress = false;
                     treeWidget.treeview('clearSearch').treeview('collapseAll');
                     var parentNode = treeWidget.treeview('getSelected');
                     t._expandAllParents(parentNode);
