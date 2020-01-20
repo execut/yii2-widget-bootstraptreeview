@@ -51,6 +51,7 @@ $.widget("execut.TreeFilterInput", {
                 prevTimeout = false;
                 treeWidget.find('.list-group-item').css('display', '');
                 if (t.inputEl.val().length) {
+                    t._hideSearchIcon();
                     treeWidget.treeview('collapseAll');
                     var findedNodes = treeWidget.treeview('search', [t._escapeRegExp(t.inputEl.val()), {
                         ignoreCase: true,     // case insensitive
@@ -70,6 +71,7 @@ $.widget("execut.TreeFilterInput", {
                         isKillKeyPress = false;
                     }
                 } else {
+                    t._showSearchIcon();
                     isKillKeyPress = false;
                     treeWidget.treeview('clearSearch').treeview('collapseAll');
                     var parentNode = treeWidget.treeview('getSelected');
@@ -83,6 +85,16 @@ $.widget("execut.TreeFilterInput", {
                 return false;
             }
         });
+    },
+    _showSearchIcon: function () {
+        var t = this;
+        console.debug('show search');
+        t.clearEl.removeClass('glyphicon-remove').addClass('glyphicon-search');
+    },
+    _hideSearchIcon: function () {
+        var t = this;
+        console.debug('hide search');
+        t.clearEl.addClass('glyphicon-remove').removeClass('glyphicon-search');
     },
     _expandAllParents: function (parentNode) {
         var t = this,

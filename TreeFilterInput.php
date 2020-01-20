@@ -39,10 +39,10 @@ class TreeFilterInput extends Widget
         Html::addCssClass($inputOptions, 'form-control');
         $inputOptions['autocomplete'] = 'off';
         $clearButtonOptions = ArrayHelper::merge([
-            'class' => 'close',
+            'class' => 'close glyphicon glyphicon-search',
             'title' => 'Clear search results',
         ], $this->clearButtonOptions);
 
-        echo $this->_renderContainer(Html::input('text', 'search', null, $inputOptions) . Html::tag('span', '×', $clearButtonOptions));
+        echo $this->_renderContainer(Html::input('text', 'search', null, $inputOptions) . Html::tag('span', '', $clearButtonOptions));
     }
 }

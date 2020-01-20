@@ -3,6 +3,12 @@
 }
 .execut-tree-filter-input .close {
   position: absolute;
-  top: 6px;
+  top: 10px;
+  font-size: 12px;
   right: 8px;
+  font-weight: normal;
+}
+.execut-tree-filter-input .close.glyphicon-search {
+  font-size: 17px;
+  top: 7px;
 }
