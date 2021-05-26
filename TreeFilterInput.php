@@ -9,7 +9,7 @@ namespace execut\widget;
 
 
 use execut\yii\jui\Widget;
-use yii\bootstrap\Html;
+use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 
 class TreeFilterInput extends Widget
